@@ -3,6 +3,7 @@ import Hero from '../components/home/Hero'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useWeb3 } from '@3rdweb/hooks'
+import { useEffect } from 'react'
 
 const style = {
   wrapper: ``,
@@ -13,6 +14,26 @@ const style = {
 
 const Home = () => {
   const { address, connectWallet } = useWeb3()
+  /**
+   * userが登録されたらsanityDBに登録されるようにする function
+   * ImmediatelyInvokedFunctionExpression
+   * ;(() => 2 )()
+   * ;(() => console.log('hello'))()
+   */
+
+  useEffect(() => {
+    if (!address) return
+    ;(async () => {
+      const userDoc = {
+        _type: 'users',
+        _id: address,
+        userName: 'Unnamed',
+        walletAddress: address,
+      }
+      const result = await client.createIfNotExists(userDoc)
+    })()
+  }, [address])
+
   return (
     <div className={style.wrapper}>
       {address ? (
