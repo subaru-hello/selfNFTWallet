@@ -12,12 +12,26 @@ const style = {
 }
 
 const Home = () => {
-  const [address, connectWallet] = useWeb3()
+  const { address, connectWallet } = useWeb3()
   return (
-    <>
-      <Header />
-      <Hero />
-    </>
+    <div className={style.wrapper}>
+      {address ? (
+        <>
+          <Header />
+          <Hero />
+        </>
+      ) : (
+        <div className={style.walletConnectWrapper}>
+          <button className={style.button} onClick={() => connectWallet('injected')}>
+            Connect Wallet
+          </button>
+          <div className={style.details}>
+            You need Chrome to be
+            <br /> able to run this app.
+          </div>
+        </div>
+      )}
+    </div>
   )
 }
 
