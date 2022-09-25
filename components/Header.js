@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import openseaLogo from '../assets/openseaLogo'
+import openseaLogo from '../assets/openseaLogo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { CgProfile } from 'react-icons/cg'
 import { MdOutlineAccountBalanceWallet } from 'react-icons/md'
@@ -31,6 +31,24 @@ export const Header = () => {
         <div className={style.searchIcon}>
           <AiOutlineSearch />
         </div>
+        <input
+          className={style.searchInput}
+          placeholder='Search items, collections, and accounts'
+        />
+      </div>
+      <div className={style.headerItems}>
+        <Link href='/collections/0xE2c13904576D78493ce751F6f78609b2106427F2'>
+          <div className={style.headerItem}> Collections </div>
+        </Link>
+        <div className={style.headerItem}> Stats </div>
+        <div className={style.headerItem}> Resources </div>
+        <div className={style.headerItem}> Create </div>
+        <div className={style.headerIcon}>
+          <CgProfile />
+        </div>
+      </div>
+      <div className={style.headerIcon}>
+        <MdOutlineAccountBalanceWallet />
       </div>
     </div>
   )
