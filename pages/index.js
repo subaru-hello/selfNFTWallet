@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useWeb3 } from '@3rdweb/hooks'
 import { useEffect } from 'react'
-
+import { client } from '../lib/sanityClient'
 const style = {
   wrapper: ``,
   walletConnectWrapper: `flex flex-col justify-center items-center h-screen w-screen bg-[#3b3d42] `,
