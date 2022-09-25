@@ -7,6 +7,7 @@
     "fmt": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
+    "@3rdweb/hooks": "^1.9.2",
     "next": "latest",
     "prettier": "^2.7.1",
     "react": "18.1.0",
