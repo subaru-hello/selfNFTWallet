@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useWeb3 } from '@3rdweb/hooks'
 import { useEffect } from 'react'
 import { client } from '../lib/sanityClient'
+import toast, { Toaster } from 'react-hot-toast'
 const style = {
   wrapper: ``,
   walletConnectWrapper: `flex flex-col justify-center items-center h-screen w-screen bg-[#3b3d42] `,
@@ -14,6 +15,15 @@ const style = {
 
 const Home = () => {
   const { address, connectWallet } = useWeb3()
+
+  const welcomeUser = (userName, toastHandler = toast) => {
+    toastHandler.success(`Welcome back${userName !== 'Unnamed' ? ` ${userName}` : ''}!`, {
+      style: {
+        background: '#04111d',
+        color: '#fff',
+      },
+    })
+  }
   /**
    * userが登録されたらsanityDBに登録されるようにする function
    * ImmediatelyInvokedFunctionExpression
@@ -31,11 +41,14 @@ const Home = () => {
         walletAddress: address,
       }
       const result = await client.createIfNotExists(userDoc)
+
+      welcomeUser(result.userName)
     })()
   }, [address])
 
   return (
     <div className={style.wrapper}>
+      <Toaster position='top-center' reverseOrder={false} />
       {address ? (
         <>
           <Header />
